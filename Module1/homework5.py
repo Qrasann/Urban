@@ -5,8 +5,7 @@ print('Sublist:', my_list[2:])
 my_list[2] = 'Banana'
 print('Modified list:', my_list)
 
-my_dict = {'apple': 'яблоко', 'banana': 'банан', 'orange': 'апельсин'
-           }
+my_dict = {'apple': 'яблоко', 'banana': 'банан', 'orange': 'апельсин'}
 print('Dictionary:', my_dict)
 print('Translation:', my_dict['orange'])
 my_dict['kiwi'] = 'киви'
