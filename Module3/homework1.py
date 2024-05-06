@@ -7,4 +7,4 @@ def test2(a,b,c):
     print(a,b,c)
 
 test()
-test2(2, 3, 4)
+test2('Я', 'люблю', 'майнкрафт')
