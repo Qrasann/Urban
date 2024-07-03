@@ -5,6 +5,6 @@ def all_variants(text):
       yield text[start:start + length]
 
 
-a = all_variants("abc")
+a = all_variants("Naruto")
 for i in a:
   print(i)
