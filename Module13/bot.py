@@ -17,12 +17,12 @@ async def start(message):
   print("Привет! Я бот помогающий твоему здоровью.")
 
 @dp.message_handler()
-async def massages(message):
+async def messages(message):
   print("Мы получили сообщение!")
 
 
 @dp.message_handler()
-async def all_massages(message):
+async def all_messages(message):
   print("Введите команду /start, чтобы начать общение.")
 
 
