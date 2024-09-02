@@ -1,30 +1,27 @@
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-import asyncio
 
-api = ""
+# Замените '' на ваш токен
+api = "YOUR_API_TOKEN_HERE"  
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 @dp.message_handler(text=['Urban', 'ff'])
-async def urban_message(message):
-  print("Urban message")
+async def urban_message(message: types.Message):
+    print("Urban message")
 
 
-@dp.message_handler(text=['/start', 'start'])
-async def start(message):
-  print("Привет! Я бот помогающий твоему здоровью.")
-
-@dp.message_handler()
-async def messages(message):
-  print("Мы получили сообщение!")
+@dp.message_handler(commands=['start', 'help'])
+async def start(message: types.Message):
+    await message.reply("Привет! Я бот, помогающий твоему здоровью.")
 
 
 @dp.message_handler()
-async def all_messages(message):
-  print("Введите команду /start, чтобы начать общение.")
+async def all_messages(message: types.Message):
+    print("Мы получили сообщение!")
+    await message.reply("Введите команду /start, чтобы начать общение.")
 
 
 if __name__ == '__main__':
-  executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, skip_updates=True)

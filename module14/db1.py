@@ -40,6 +40,13 @@ total_users = cursor.fetchone()[0]
 cursor.execute("SELECT SUM(balance) FROM Users")
 all_balances = cursor.fetchone()[0]
 
+delete_users_query = '''
+DELETE FROM Users
+WHERE id % 3 = 1;
+'''
+cursor.execute(delete_users_query)
+
+
 print(all_balances / total_users)
 
 

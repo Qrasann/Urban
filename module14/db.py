@@ -32,11 +32,16 @@ cursor.executemany('INSERT INTO Users (username, email, age, balance) VALUES (?,
 
 cursor.execute("UPDATE Users SET balance = 500 WHERE id IN (1, 3, 5, 7, 9)")
 
-cursor.execute('SELECT username, email, age, balance FROM Users WHERE age != 60')
-results = cursor.fetchall()
+cursor.execute("DELETE FROM Users WHERE id = 6")
 
-for username, email, age, balance in results:
-    print(f'NAME: {username} | EMAIL: {email} | AGE: {age} | BALANCE: {balance}')
+cursor.execute("SELECT COUNT(*) FROM Users")
+total_users = cursor.fetchone()[0]
+
+cursor.execute("SELECT SUM(balance) FROM Users")
+all_balances = cursor.fetchone()[0]
+
+print(all_balances / total_users)
+
 
 connection.commit()
 connection.close()
