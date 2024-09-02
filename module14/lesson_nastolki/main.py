@@ -26,6 +26,39 @@ async def price(message):
 async def info(message):
     await message.answer(reply_markup = catalog_kb)
 
+@dp.callback_query_handler(text='medium')
+async def buy_m(call):
+    await call.message.answer(texts.Mgame, reply_markup = buy_kb)
+    await call.answer()
+
+@dp.callback_query_handler(text='big')
+async def buy_big(call):
+    await call.message.answer(texts.Lgame, reply_markup = buy_kb)
+    await call.answer()
+
+@dp.callback_query_handler(text='very')
+async def buy_very(call):
+    await call.message.answer(texts.XLgame, reply_markup = buy_kb)
+    await call.answer()
+
+@dp.callback_query_handler(text='other')
+async def buy_other(call):
+    await call.message.answer(texts.other, reply_markup = buy_kb)
+    await call.answer()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 api= ''
 bot = Bot(token = api)
 dp = Dispatcher(bot, storage= MemoryStorage())
