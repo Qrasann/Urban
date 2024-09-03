@@ -8,7 +8,10 @@ import asyncio
 
 from config import *
 from keyboards import *
+from admin import *
+from db import *
 import texts
+
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API)
@@ -16,15 +19,17 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer(texts.start, reply_markup = start_kb)
+    await message.answer(f'Welcome,{message.from_user.username}! ' +texts.start, reply_markup = start_kb)
 
-@dp.message_handler(texts = 'Стоимость')
+
+@dp.message_handler(texts = 'price')
 async def price(message):
     await message.anwer(texts.about, reply_markup = start_kb)
 
-@dp.message_handler(texts = 'О нас')
+@dp.message_handler(texts = 'about us')
 async def info(message):
-    await message.answer(reply_markup = catalog_kb)
+    with open('files/4.png', 'rb') as img:
+    await message.answer_photo(img, texts.about, reply_markup = catalog_kb)
 
 @dp.callback_query_handler(text='medium')
 async def buy_m(call):
@@ -47,7 +52,10 @@ async def buy_other(call):
     await call.answer()
 
 
-
+@dp.callback_query_handler(text='back_to_catalog')
+async def back(call):
+    await call.message.answer('For you', reply_markup=catalog_kb)
+    await call.answer()
 
 
 

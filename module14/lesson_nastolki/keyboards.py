@@ -23,7 +23,22 @@ catalog_kb = InlineKeyboardMarkup(
 
 buy_kb = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text='Order', url = '#')]
+        [InlineKeyboardButton(text='Order', url = '#')],
+        [InlineKeyboardButton(text='Back', callback_data='back_to_catalog')]
+    ]
+)
+
+admin_panel = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text='Users',callback_data='users')],
+        [InlineKeyboardButton(text='Statistics', callback_data='stats')],
+        [
+         InlineKeyboardButton(text='Block', callback_data='block')
+         InlineKeyboardButton(text='Unblock', callback_data='unblock')
+
+
+
+        ]
     ]
 )
 
