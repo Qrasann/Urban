@@ -1,7 +1,7 @@
 import telebot
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 
-API_TOKEN = ''
+API_TOKEN = 'YOUR_API_TOKEN_HERE'
 bot = telebot.TeleBot(API_TOKEN)
 
 def create_main_keyboard():
@@ -11,15 +11,37 @@ def create_main_keyboard():
     keyboard.add(button_calculate, button_info)
     return keyboard
 
+def create_inline_keyboard():
+    keyboard = InlineKeyboardMarkup()
+    button_calories = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
+    button_formulas = InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')
+    keyboard.add(button_calories, button_formulas)
+    return keyboard
+
 @bot.message_handler(commands=['start'])
 def start(message):
     keyboard = create_main_keyboard()
     bot.send_message(message.chat.id, "Выберите опцию:", reply_markup=keyboard)
 
 @bot.message_handler(func=lambda message: message.text == 'Рассчитать')
-def set_age(message):
-    bot.send_message(message.chat.id, "Введите ваш возраст:")
-    bot.register_next_step_handler(message, set_growth)
+def main_menu(message):
+    keyboard = create_inline_keyboard()
+    bot.send_message(message.chat.id, "Выберите опцию:", reply_markup=keyboard)
+
+
+@bot.callback_query_handler(func=lambda call: call.data == 'formulas')
+def get_formulas(call):
+    formula_message = (
+        "Формула Миффлина-Сан Жеора:\n"
+        "Для мужчин: BMR = 10 * вес (кг) + 6.25 * рост (см) - 5 * возраст (годы) + 5\n"
+        "Для женщин: BMR = 10 * вес (кг) + 6.25 * рост (см) - 5 * возраст (годы) - 161"
+    )
+    bot.send_message(call.message.chat.id, formula_message)
+
+@bot.callback_query_handler(func=lambda call: call.data == 'calories')
+def set_age(call):
+    bot.send_message(call.message.chat.id, "Введите ваш возраст:")
+    bot.register_next_step_handler(call.message, set_growth)
 
 def set_growth(message):
     try:
