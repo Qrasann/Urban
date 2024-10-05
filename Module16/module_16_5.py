@@ -8,6 +8,7 @@ app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
 
+
 users = []
 
 class User(BaseModel):
