@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import function_view, ClassView
+from . import views
 
 urlpatterns = [
-    path('function/', function_view, name='function_view'),
-    path('class/', ClassView.as_view(), name='class_view'),
+    path('function/', views.function_view, name='function_view'),
+    path('class/', views.ClassView.as_view(), name='class_view'),
 ]
