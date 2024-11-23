@@ -15,7 +15,7 @@ add_product("Orange", "Juicy orange", 40, 'https://i.pinimg.com/736x/51/76/e2/51
 add_product("Milk", "Fresh milk", 60, 'https://i.pinimg.com/564x/71/9d/3b/719d3b626babfebadb6207bb652d1bae.jpg')
 
 
-API_TOKEN = '7397323719:AAGK4BQLwKqQ3kK9H0gYxRo8-IRA9sMCs2U'
+API_TOKEN = ''
 bot = telebot.TeleBot(API_TOKEN)
 
 initiate_db()
