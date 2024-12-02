@@ -4,7 +4,7 @@ from telebot import types
 from transitions import Machine
 from crud_functions import initiate_db, add_user, is_included
 
-API_TOKEN = '7397323719:AAGK4BQLwKqQ3kK9H0gYxRo8-IRA9sMCs2U'
+API_TOKEN = ''
 bot = telebot.TeleBot(API_TOKEN)
 
 # Определяем состояния для машины состояний
