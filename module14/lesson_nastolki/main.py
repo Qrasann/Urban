@@ -57,29 +57,9 @@ async def back(call):
     await call.message.answer('For you', reply_markup=catalog_kb)
     await call.answer()
 
-
-
-
-
-
-
-
-
-
-
 api= ''
 bot = Bot(token = api)
 dp = Dispatcher(bot, storage= MemoryStorage())
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
