@@ -1,7 +1,7 @@
-from app.backend.db import Base
+from backend.db import Base
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
-from app.models import *
+from models import *
 
 class Category(Base):
     __tablename__ = 'categories'
