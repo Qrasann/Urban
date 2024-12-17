@@ -1,0 +1,14 @@
+{% extends 'fourth_task/menu.html' %}
+
+{% block pagename %}
+Магазин
+{% endblock %}
+
+{% block content %}
+<h2>Каталог товаров</h2>
+<ul>
+    {% for item in products %}
+    <li>{{ item.name }} - ${{ item.price }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
